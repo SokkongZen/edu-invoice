@@ -648,6 +648,78 @@
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<InvoiceGenerator />);
 </script>
+<!-- ... existing code ... -->
+        const calculateDuration = (start, end) => {
+            if (!start || !end || !start.includes(':') || !end.includes(':')) return 0;
+            const [startH, startM] = start.split(':').map(Number);
+            const [endH, endM] = end.split(':').map(Number);
+            if (isNaN(startH) || isNaN(startM) || isNaN(endH) || isNaN(endM)) return 0;
 
+            let diffInMinutes = (endH * 60 + endM) - (startH * 60 + startM);
+            if (diffInMinutes < 0) diffInMinutes += 24 * 60; 
+            return parseFloat((diffInMinutes / 60).toFixed(2));
+        };
+
+        const handleAutoTimeChange = (e) => {
+            const timeStr = e.target.value;
+            if (!timeStr) return;
+
+            const [hours, minutes] = timeStr.split(':');
+            const date = new Date();
+            date.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0);
+
+            const formatOpts = { hour: '2-digit', minute: '2-digit', hour12: true };
+            
+            // Auto convert using browser's Intl formatting (Handles Daylight Saving Time accurately)
+            const khTime = date.toLocaleTimeString('en-US', { ...formatOpts, timeZone: 'Asia/Phnom_Penh' });
+            const bosTime = date.toLocaleTimeString('en-US', { ...formatOpts, timeZone: 'America/New_York' });
+            const melTime = date.toLocaleTimeString('en-US', { ...formatOpts, timeZone: 'Australia/Melbourne' });
+
+            const newZoneStr = `🌍 KH: ${khTime} | US (Boston): ${bosTime} | AU (Melbourne): ${melTime}`;
+            setInvoiceData({ ...invoiceData, timeZoneInfo: newZoneStr });
+        };
+
+        const handleInputChange = (e) => setInvoiceData({ ...invoiceData, [e.target.name]: e.target.value });
+        
+        const handleDatePick = (field, isoDateValue) => {
+<!-- ... existing code ... -->
+                            {/* Student Info */}
+                            <div className="mb-4 flex">
+                                <div className="w-full bg-stone-50 rounded-lg border border-stone-200 p-5">
+                                    <h3 className="text-stone-400 text-xs font-bold uppercase tracking-widest mb-2">Student Info</h3>
+                                    <div className="flex flex-col">
+                                        <input type="text" name="studentName" value={invoiceData.studentName} onChange={handleInputChange} className="w-full font-bold text-2xl bg-transparent border-none focus:ring-0 rounded-none p-3 mb-1 text-gray-900 placeholder-gray-400" placeholder="Student Name" />
+                                        <input name="studentAddress" value={invoiceData.studentAddress} onChange={handleInputChange} className="w-full font-bold text-2xl bg-transparent border-none focus:ring-0 rounded-none p-2 mb-1 text-gray-900 placeholder-gray-400" placeholder="Student Location" />
+                                        <input type="text" name="studentPhone" value={invoiceData.studentPhone} onChange={handleInputChange} className="w-full font-bold text-2xl bg-transparent border-none focus:ring-0 rounded-none p-2 mb-1 text-gray-900 placeholder-gray-400" placeholder="Phone Number" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Time Zones Info (1 Line) */}
+                            <div className="mb-8 bg-stone-50 rounded-lg border border-stone-200 p-3 flex items-center relative">
+                                <div className="flex items-center mr-4">
+                                    <span className="text-stone-400 font-bold text-xs uppercase tracking-widest whitespace-nowrap mr-2">Class Time</span>
+                                    <input 
+                                        type="time" 
+                                        onChange={handleAutoTimeChange}
+                                        className="no-print bg-white border border-stone-300 rounded px-1 text-xs cursor-pointer text-stone-600 focus:ring-1 focus:ring-indigo-300"
+                                        title="រើសម៉ោងនៅខ្មែរ ដើម្បីបម្លែងស្វ័យប្រវត្តិ"
+                                    />
+                                </div>
+                                <input 
+                                    type="text" 
+                                    name="timeZoneInfo" 
+                                    value={invoiceData.timeZoneInfo} 
+                                    onChange={handleInputChange} 
+                                    className="w-full font-bold text-sm bg-transparent border-none focus:ring-0 p-0 text-gray-700 placeholder-gray-400" 
+                                    placeholder="🌍 KH: 08:00 AM | US (Boston): 09:00 PM | AU (Melbourne): 12:00 PM" 
+                                />
+                            </div>
+
+                            {/* Table */}
+                            <div className="mb-8">
+                                <div className="rounded-lg border border-stone-200 overflow-hidden">
+<!-- ... existing code ... -->
+    
 </body>
 </html>
