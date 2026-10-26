@@ -9,11 +9,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script>
-        Babel.registerPreset('react-classic', {
-            presets: [
-                [Babel.availablePresets['react'], { runtime: 'classic' }]
-            ]
-        });
+        Babel.registerPreset('react-classic', { presets: [ [Babel.availablePresets['react'], { runtime: 'classic' }] ] });
     </script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,95 +17,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Battambang:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Modern Font Stack */
-        body, #root, input, textarea, button, div, span, p, h1, h2, h3, h4, td, th {
-            font-family: 'Inter', 'Battambang', sans-serif !important;
-        }
-        
-        /* Custom Inputs to look seamless - Eye care focus */
-        input:focus, .editable-div:focus, textarea:focus {
-            outline: 2px solid #a8a29e; 
-            background-color: #fafaf9 !important; 
-            border-radius: 4px;
-        }
-
-        /* ----- LOGIN ANIMATIONS & EFFECTS (EYE CARE THEME) ----- */
-        .tech-grid {
-            background-color: #e7e5e1; 
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
-            animation: moveGrid 30s linear infinite; 
-        }
-        @keyframes moveGrid {
-            0% { background-position: 0 0; }
-            100% { background-position: 40px 40px; }
-        }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.04);
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.06; }
-            90% { opacity: 0.06; }
-            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
-        }
-        .math-symbol {
-            position: absolute;
-            color: #000000; 
-            font-weight: 800;
-            user-select: none;
-            animation: floatUp linear infinite;
-        }
-
-        .login-input {
-            background: rgba(255, 255, 255, 0.6) !important;
-            border: 1px solid rgba(0, 0, 0, 0.08) !important;
-            color: #292524; 
-            transition: all 0.3s ease;
-        }
-        .login-input:focus {
-            background: #ffffff !important;
-            border-color: #78716c !important; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-            outline: none !important;
-        }
-
-        /* ----- INVOICE STYLES ----- */
-        .date-input-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-        .hidden-date-picker {
-            position: absolute;
-            opacity: 0;
-            right: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            z-index: 10;
-        }
-
+        body, #root, input, textarea, button, div, span, p, h1, h2, h3, h4, td, th { font-family: 'Inter', 'Battambang', sans-serif !important; }
+        input:focus, .editable-div:focus, textarea:focus { outline: 2px solid #a8a29e; background-color: #fafaf9 !important; border-radius: 4px; }
+        .tech-grid { background-color: #e7e5e1; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px); animation: moveGrid 30s linear infinite; }
+        @keyframes moveGrid { 0% { background-position: 0 0; } 100% { background-position: 40px 40px; } }
+        .glass-panel { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.04); }
+        @keyframes floatUp { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.06; } 90% { opacity: 0.06; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
+        .math-symbol { position: absolute; color: #000000; font-weight: 800; user-select: none; animation: floatUp linear infinite; }
+        .login-input { background: rgba(255, 255, 255, 0.6) !important; border: 1px solid rgba(0, 0, 0, 0.08) !important; color: #292524; transition: all 0.3s ease; }
+        .login-input:focus { background: #ffffff !important; border-color: #78716c !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); outline: none !important; }
+        .date-input-container { position: relative; display: flex; align-items: center; justify-content: flex-end; }
+        .hidden-date-picker { position: absolute; opacity: 0; right: 0; top: 0; width: 100%; height: 100%; cursor: pointer; z-index: 10; }
         @media print {
             @page { size: A4; margin: 0; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
-            body { background: white; }
-            body * { visibility: hidden; }
-            #root, #root * { visibility: visible; }
+            body { background: white; } body * { visibility: hidden; } #root, #root * { visibility: visible; }
             #root { position: absolute; left: 0; top: 0; width: 210mm; height: 297mm; margin: 0; padding: 0; overflow: hidden; }
             .print-container { width: 210mm !important; min-height: 297mm !important; position: absolute; top: 0; left: 0; margin: 0 !important; padding: 10mm !important; box-shadow: none !important; border: none !important; background: white !important; font-size: 11pt; }
-            table, tr, td, th, .break-avoid { page-break-inside: avoid; }
-            .no-print { display: none !important; }
+            table, tr, td, th, .break-avoid { page-break-inside: avoid; } .no-print { display: none !important; }
             input, .editable-div, textarea { border: none !important; background: transparent !important; resize: none; color: black !important;}
             .calendar-icon { display: none !important; }
         }
@@ -122,7 +47,7 @@
 <script type="text/babel" data-presets="env,react-classic">
     const { useState, useEffect, useRef } = React;
 
-    // URL ត្រូវបានបញ្ចូលរួចរាល់
+    // TODO: សូមដាក់ Web App URL ថ្មីរបស់លោកគ្រូនៅទីនេះ 
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby5IpuygMm8vw2g2P9a8qqHFYNpft4UFtW1YpIpSlaM8xYFtksSbtZ0uKPnZFARQrls/exec"; 
 
     // --- CREDENTIALS ---
@@ -140,39 +65,17 @@
     const LogOutIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>);
     const LockIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-stone-500 mb-4 mx-auto"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>);
 
-    // Component: Math Background Animation
     const MathBackground = () => {
         const symbols = ['∑', '∫', 'π', '∞', '∆', '√', 'θ', 'μ', 'Ω', '≈', '≠', '≤', '≥', 'E=mc²'];
         const [elements, setElements] = useState([]);
-
         useEffect(() => {
-            const arr = Array.from({ length: 25 }).map((_, i) => ({
-                id: i,
-                symbol: symbols[Math.floor(Math.random() * symbols.length)],
-                left: Math.random() * 100,
-                delay: Math.random() * 20,
-                duration: 15 + Math.random() * 25,
-                fontSize: 1 + Math.random() * 2
-            }));
-            setElements(arr);
+            setElements(Array.from({ length: 25 }).map((_, i) => ({
+                id: i, symbol: symbols[Math.floor(Math.random() * symbols.length)], left: Math.random() * 100, delay: Math.random() * 20, duration: 15 + Math.random() * 25, fontSize: 1 + Math.random() * 2
+            })));
         }, []);
-
         return (
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 no-print" data-html2canvas-ignore="true">
-                {elements.map(el => (
-                    <div 
-                        key={el.id} 
-                        className="math-symbol"
-                        style={{
-                            left: `${el.left}%`,
-                            animationDelay: `${el.delay}s`,
-                            animationDuration: `${el.duration}s`,
-                            fontSize: `${el.fontSize}rem`
-                        }}
-                    >
-                        {el.symbol}
-                    </div>
-                ))}
+                {elements.map(el => ( <div key={el.id} className="math-symbol" style={{ left: `${el.left}%`, animationDelay: `${el.delay}s`, animationDuration: `${el.duration}s`, fontSize: `${el.fontSize}rem` }}>{el.symbol}</div> ))}
             </div>
         );
     };
@@ -184,57 +87,35 @@
         const [loginError, setLoginError] = useState(false);
 
         useEffect(() => {
-            const loggedInStatus = sessionStorage.getItem('edu_ikh_logged_in');
-            if (loggedInStatus === 'true') {
-                setIsLoggedIn(true);
-            }
+            if (sessionStorage.getItem('edu_ikh_logged_in') === 'true') setIsLoggedIn(true);
         }, []);
 
         const handleLogin = (e) => {
             e.preventDefault();
             if (username === CORRECT_USER && password === CORRECT_PASS) {
                 sessionStorage.setItem('edu_ikh_logged_in', 'true');
-                setIsLoggedIn(true);
-                setLoginError(false);
-            } else {
-                setLoginError(true);
-            }
+                setIsLoggedIn(true); setLoginError(false);
+            } else { setLoginError(true); }
         };
 
         const handleLogout = () => {
             sessionStorage.removeItem('edu_ikh_logged_in');
-            setIsLoggedIn(false);
-            setUsername('');
-            setPassword('');
+            setIsLoggedIn(false); setUsername(''); setPassword('');
         };
 
-        // --- Invoice State ---
         const formatDateDDMMYYYY = (dateObj) => {
             const d = String(dateObj.getDate()).padStart(2, '0');
             const m = String(dateObj.getMonth() + 1).padStart(2, '0');
-            const y = dateObj.getFullYear();
-            return `${d}-${m}-${y}`;
+            return `${d}-${m}-${dateObj.getFullYear()}`;
         };
 
         const [invoiceData, setInvoiceData] = useState({
-            invoiceNumber: 'Loading...',
-            date: formatDateDDMMYYYY(new Date()),
-            dueDate: formatDateDDMMYYYY(new Date()),
-            validityStart: formatDateDDMMYYYY(new Date()),
-            sellerName: 'EDU-ikh | Home & Online Tutoring',
-            sellerAddress: 'www.edu-ikh.com',
-            sellerPhone: '096 96 40 573 | 069 333 481',
-            sellerEmail: 'tutor@school.com',
-            studentName: '',
-            studentAddress: '',
-            studentPhone: '',
-            currency: '$',
-            discountRate: 0,
+            invoiceNumber: 'Loading...', date: formatDateDDMMYYYY(new Date()), dueDate: formatDateDDMMYYYY(new Date()), validityStart: formatDateDDMMYYYY(new Date()),
+            sellerName: 'EDU-ikh | Home & Online Tutoring', sellerAddress: 'www.edu-ikh.com', sellerPhone: '096 96 40 573 | 069 333 481', sellerEmail: 'tutor@school.com',
+            studentName: '', studentAddress: '', studentPhone: '', currency: '$', discountRate: 0,
             note: 'Thank you for choosing services and products from:\n EDU-ikh | Home & Online Tutoring. We are committed to your success!',
             paymentInfo: 'ABA Name : CHEANG SOKKONG\nAccount Number : 000 738 752',
-            items: [
-                { id: 1, description: 'Math-CSCA', startTime: '02:00', endTime: '03:00', quantity: 1, price: 150 },
-            ],
+            items: [{ id: 1, description: 'Math-CSCA', startTime: '02:00', endTime: '03:00', quantity: 1, price: 150 }],
         });
 
         const [subtotal, setSubtotal] = useState(0);
@@ -244,66 +125,47 @@
         const [isSaving, setIsSaving] = useState(false);
         const [saveMessage, setSaveMessage] = useState(null); 
 
-        // State ថ្មីសម្រាប់ផ្ទុកបញ្ជីសិស្ស និង Search
+        // State ថ្មីសម្រាប់ Search សិស្ស
         const [studentsDb, setStudentsDb] = useState([]); 
         const [searchTerm, setSearchTerm] = useState(''); 
         const [showDropdown, setShowDropdown] = useState(false);
 
-        // អនុគមន៍ថ្មីសម្រាប់ទាញយកទាំងលេខ Invoice និងទិន្នន័យសិស្ស
         const fetchInitialData = async (isNewBtnClicked = false) => {
             let nextSeq = 1221;
             let fetchedFromServer = false;
-
             try {
                 if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("YOUR_")) {
                     const response = await fetch(GOOGLE_SCRIPT_URL);
                     const data = await response.json();
                     if (data) {
-                        if (data.nextSeq) {
-                            nextSeq = data.nextSeq;
-                            fetchedFromServer = true;
-                        }
-                        if (data.students) {
-                            setStudentsDb(data.students);
-                        }
+                        if (data.nextSeq) { nextSeq = data.nextSeq; fetchedFromServer = true; }
+                        if (data.students) setStudentsDb(data.students);
                     }
                 }
-            } catch (error) {
-                console.warn("Using local sequence fallback.");
-            }
+            } catch (error) { console.warn("Using local sequence fallback."); }
 
             if (!fetchedFromServer) {
-                let localSeq = parseInt(localStorage.getItem('edu_ikh_invoice_seq_v2'));
-                if (!localSeq) localSeq = 1221;
+                let localSeq = parseInt(localStorage.getItem('edu_ikh_invoice_seq_v2')) || 1221;
                 nextSeq = isNewBtnClicked ? localSeq + 1 : localSeq;
             }
-
             localStorage.setItem('edu_ikh_invoice_seq_v2', nextSeq);
             
             const now = new Date();
-            const yyyy = now.getFullYear();
-            const mm = String(now.getMonth() + 1).padStart(2, '0');
-            const seqString = String(nextSeq).padStart(5, '0'); 
-            const randomId = Math.floor(1000 + Math.random() * 9000);
-
-            return `INV-${yyyy}-${mm}-${seqString}-${randomId}`;
+            return `INV-${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(nextSeq).padStart(5, '0')}-${Math.floor(1000 + Math.random() * 9000)}`;
         };
 
         useEffect(() => {
-            if(!isLoggedIn) return;
-            fetchInitialData(false).then(newInvNum => {
-                setInvoiceData(prev => ({ ...prev, invoiceNumber: newInvNum }));
-            });
+            if(isLoggedIn) {
+                fetchInitialData(false).then(newInvNum => { setInvoiceData(prev => ({ ...prev, invoiceNumber: newInvNum })); });
+            }
         }, [isLoggedIn]);
 
         const handleNewInvoice = async () => {
             setInvoiceData(prev => ({ ...prev, invoiceNumber: 'Generating...' })); 
-            setSearchTerm(''); // Clear ប្រអប់ Search ពេលចេញវិក្កយបត្រថ្មី
+            setSearchTerm(''); 
             const newInvNum = await fetchInitialData(true);
             setInvoiceData(prev => ({
-                ...prev,
-                invoiceNumber: newInvNum,
-                studentName: '', studentAddress: '', studentPhone: '',
+                ...prev, invoiceNumber: newInvNum, studentName: '', studentAddress: '', studentPhone: '',
                 items: [{ id: Date.now(), description: 'Math-CSCA', startTime: '02:00', endTime: '03:00', quantity: 1, price: 150 }]
             }));
         };
@@ -311,10 +173,7 @@
         useEffect(() => {
             const sub = invoiceData.items.reduce((acc, item) => acc + (item.quantity * item.price), 0);
             const discount = sub * (invoiceData.discountRate / 100);
-            const total = sub - discount;
-            setSubtotal(sub);
-            setDiscountAmount(discount);
-            setGrandTotal(total);
+            setSubtotal(sub); setDiscountAmount(discount); setGrandTotal(sub - discount);
         }, [invoiceData]);
 
         const calculateDuration = (start, end) => {
@@ -322,7 +181,6 @@
             const [startH, startM] = start.split(':').map(Number);
             const [endH, endM] = end.split(':').map(Number);
             if (isNaN(startH) || isNaN(startM) || isNaN(endH) || isNaN(endM)) return 0;
-
             let diffInMinutes = (endH * 60 + endM) - (startH * 60 + startM);
             if (diffInMinutes < 0) diffInMinutes += 24 * 60; 
             return parseFloat((diffInMinutes / 60).toFixed(2));
@@ -358,25 +216,15 @@
         const removeItem = (id) => setInvoiceData({ ...invoiceData, items: invoiceData.items.filter(i => i.id !== id) });
         const handlePrint = () => window.print();
 
-        // មុខងារ Select ឈ្មោះសិស្សហើយ Auto-fill ទិន្នន័យ
+        // មុខងារ Select ឈ្មោះសិស្ស
         const handleSelectStudent = (student) => {
             setSearchTerm(student.name);
             setShowDropdown(false);
-            
-            // បញ្ចូលទិន្នន័យទៅក្នុង Invoice Data
             setInvoiceData(prev => ({
-                ...prev,
-                studentName: student.name,
-                studentAddress: student.location,
-                studentPhone: student.phone,
-                // Update Item ទី១ ឲ្យយកមុខវិជ្ជា ម៉ោង និងតម្លៃរបស់សិស្សនោះ
+                ...prev, studentName: student.name, studentAddress: student.location, studentPhone: student.phone,
                 items: [{
-                    id: Date.now(),
-                    description: student.subject || '',
-                    startTime: student.timeIn || '',
-                    endTime: student.timeOut || '',
-                    quantity: calculateDuration(student.timeIn, student.timeOut) || 1, // បើមានម៉ោងវាគណនា QTY ស្វ័យប្រវត្តិ
-                    price: parseFloat(student.price) || 0
+                    id: Date.now(), description: student.subject || '', startTime: student.timeIn || '', endTime: student.timeOut || '',
+                    quantity: calculateDuration(student.timeIn, student.timeOut) || 1, price: parseFloat(student.price) || 0
                 }]
             }));
         };
@@ -388,11 +236,9 @@
             try {
                 await new Promise(resolve => setTimeout(resolve, 100));
                 const canvas = await html2canvas(element, { scale: 2, useCORS: true, allowTaint: true, logging: false, backgroundColor: '#ffffff', windowWidth: 1400 });
-                const image = canvas.toDataURL("image/jpeg", 0.9);
-                const studentName = invoiceData.studentName ? invoiceData.studentName.trim() : 'Unknown_Student';
                 const link = document.createElement('a');
-                link.href = image;
-                link.download = `${studentName}-${invoiceData.invoiceNumber}.jpg`;
+                link.href = canvas.toDataURL("image/jpeg", 0.9);
+                link.download = `${invoiceData.studentName ? invoiceData.studentName.trim() : 'Unknown_Student'}-${invoiceData.invoiceNumber}.jpg`;
                 link.click();
             } catch (error) {
                 setSaveMessage({ type: 'error', text: 'Error generating image: ' + error.message });
@@ -401,88 +247,46 @@
         };
 
         const handleSaveToDrive = async () => {
-            if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE" || GOOGLE_SCRIPT_URL === "") {
+            if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_")) {
                 setSaveMessage({ type: 'error', text: 'សូមផ្លាស់ប្តូរ GOOGLE_SCRIPT_URL ទៅជា Web App URL ពិតប្រាកដ។' });
-                setTimeout(() => setSaveMessage(null), 4000);
-                return;
+                setTimeout(() => setSaveMessage(null), 4000); return;
             }
-
-            setIsSaving(true);
-            setSaveMessage(null);
-
+            setIsSaving(true); setSaveMessage(null);
             const now = new Date();
-            const realTimeStr = now.toLocaleDateString('en-GB') + ' ' + now.toLocaleTimeString('en-US');
-            const subjectsStr = invoiceData.items.map(item => item.description || "N/A").join(", ");
-            const timeInsStr = invoiceData.items.map(item => item.startTime || "N/A").join(", ");
-            const timeOutsStr = invoiceData.items.map(item => item.endTime || "N/A").join(", ");
-
             const payload = {
                 date: invoiceData.date, invoiceNumber: invoiceData.invoiceNumber, buyerName: invoiceData.studentName || "មិនបានបញ្ជាក់ឈ្មោះ",
                 buyerPhone: invoiceData.studentPhone || "មិនបានបញ្ជាក់លេខទូរស័ព្ទ", buyerAddress: invoiceData.studentAddress || "មិនបានបញ្ជាក់ទីតាំង",
-                subtotal: subtotal.toFixed(2), discountRate: invoiceData.discountRate, grandTotal: grandTotal.toFixed(2), realTime: realTimeStr,
-                validityStart: invoiceData.validityStart, dueDate: invoiceData.dueDate, subjects: subjectsStr, timeIns: timeInsStr, timeOuts: timeOutsStr 
+                subtotal: subtotal.toFixed(2), discountRate: invoiceData.discountRate, grandTotal: grandTotal.toFixed(2), 
+                realTime: now.toLocaleDateString('en-GB') + ' ' + now.toLocaleTimeString('en-US'),
+                validityStart: invoiceData.validityStart, dueDate: invoiceData.dueDate, 
+                subjects: invoiceData.items.map(item => item.description || "N/A").join(", "), 
+                timeIns: invoiceData.items.map(item => item.startTime || "N/A").join(", "), 
+                timeOuts: invoiceData.items.map(item => item.endTime || "N/A").join(", ") 
             };
-
             try {
                 await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
-                setSaveMessage({ type: 'success', text: 'ជោគជ័យ! ទិន្នន័យវិក្កយបត្រត្រូវបានរក្សាទុកទៅក្នុង Google Sheets។' });
-                setTimeout(() => setSaveMessage(null), 4000);
+                setSaveMessage({ type: 'success', text: 'ជោគជ័យ! ទិន្នន័យត្រូវបានរក្សាទុក។' });
             } catch (error) {
-                setSaveMessage({ type: 'error', text: 'បរាជ័យ! មានបញ្ហាក្នុងការរក្សាទុកទិន្នន័យ។' });
-                setTimeout(() => setSaveMessage(null), 4000);
-            } finally { setIsSaving(false); }
+                setSaveMessage({ type: 'error', text: 'បរាជ័យ! មានបញ្ហាក្នុងការរក្សាទុក។' });
+            } finally { setIsSaving(false); setTimeout(() => setSaveMessage(null), 4000); }
         };
 
-        // --- LOGIN SCREEN ---
         if (!isLoggedIn) {
             return (
                 <div className="relative min-h-screen flex items-center justify-center p-4 tech-grid">
                     <MathBackground />
                     <div className="glass-panel w-full max-w-md rounded-2xl p-10 z-10 relative">
-                        {/* Soft subtle background blobs */}
                         <div className="absolute -top-12 -right-12 w-32 h-32 bg-stone-300 rounded-full mix-blend-multiply filter blur-2xl opacity-40"></div>
                         <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-stone-300 rounded-full mix-blend-multiply filter blur-2xl opacity-40"></div>
-                        
                         <div className="relative">
                             <LockIcon />
                             <h2 className="text-3xl font-extrabold text-center text-stone-800 mb-2 tracking-tight">System Login</h2>
                             <p className="text-stone-500 text-center text-sm mb-8">EDU-ikh | Invoice</p>
-                            
-                            {loginError && (
-                                <div className="bg-red-50 border border-red-200 text-red-600 text-sm p-3 rounded-lg mb-6 text-center backdrop-blur-sm">
-                                    Username ឬ Password មិនត្រឹមត្រូវទេ!
-                                </div>
-                            )}
-
+                            {loginError && <div className="bg-red-50 border border-red-200 text-red-600 text-sm p-3 rounded-lg mb-6 text-center">Username ឬ Password មិនត្រឹមត្រូវទេ!</div>}
                             <form onSubmit={handleLogin} className="space-y-5">
-                                <div>
-                                    <label className="block text-sm font-medium text-stone-600 mb-1">Username</label>
-                                    <input 
-                                        type="text" 
-                                        value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
-                                        className="login-input w-full p-3 rounded-lg"
-                                        placeholder="Enter admin username"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-stone-600 mb-1">Password</label>
-                                    <input 
-                                        type="password" 
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        className="login-input w-full p-3 rounded-lg"
-                                        placeholder="Enter password"
-                                        required
-                                    />
-                                </div>
-                                <button 
-                                    type="submit" 
-                                    className="w-full bg-stone-700 hover:bg-stone-800 text-white font-bold py-3 px-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 mt-4"
-                                >
-                                    Access System
-                                </button>
+                                <div><label className="block text-sm font-medium text-stone-600 mb-1">Username</label><input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="login-input w-full p-3 rounded-lg" required /></div>
+                                <div><label className="block text-sm font-medium text-stone-600 mb-1">Password</label><input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="login-input w-full p-3 rounded-lg" required /></div>
+                                <button type="submit" className="w-full bg-stone-700 hover:bg-stone-800 text-white font-bold py-3 px-4 rounded-lg mt-4">Access System</button>
                             </form>
                         </div>
                     </div>
@@ -490,82 +294,61 @@
             );
         }
 
-        // --- INVOICE SYSTEM SCREEN ---
         return (
             <div className="min-h-screen p-4 relative tech-grid">
                 <MathBackground />
-                
-                {/* Save Message Popup */}
                 {saveMessage && (
                     <div className="no-print fixed top-5 left-1/2 transform -translate-x-1/2 z-50">
-                        <div className={`px-6 py-4 rounded-lg shadow-xl border flex items-center gap-3 transition-all duration-300 ${saveMessage.type === 'success' ? 'bg-green-50 border-green-200 text-green-800' : 'bg-red-50 border-red-200 text-red-800'}`}>
-                            {saveMessage.type === 'success' ? <DatabaseIcon /> : <Trash2Icon />}
-                            <span className="font-bold">{saveMessage.text}</span>
+                        <div className={`px-6 py-4 rounded-lg shadow-xl border flex items-center gap-3 ${saveMessage.type === 'success' ? 'bg-green-50 border-green-200 text-green-800' : 'bg-red-50 border-red-200 text-red-800'}`}>
+                            {saveMessage.type === 'success' ? <DatabaseIcon /> : <Trash2Icon />} <span className="font-bold">{saveMessage.text}</span>
                         </div>
                     </div>
                 )}
-
-                {/* Main Content Wrapper - ensures it sits above the background */}
                 <div className="relative z-10 max-w-7xl mx-auto">
-                    {/* Control Bar */}
                     <div className="no-print mb-6 flex justify-between items-center bg-white/70 backdrop-blur-md p-4 rounded-lg shadow-sm border border-gray-200">
                         <h1 className="text-xl font-bold text-gray-800">Invoice Dashboard</h1>
                         <div className="flex gap-3 items-center flex-wrap justify-end">
-                            <button onClick={handleNewInvoice} className="flex items-center gap-2 px-4 py-2 bg-stone-100 text-stone-700 hover:bg-stone-200 rounded-md font-medium transition shadow-sm border border-stone-200">
-                                <FilePlusIcon /> New Invoice
-                            </button>
-                            <button onClick={handleSaveToDrive} disabled={isSaving} className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium transition text-white ${isSaving ? 'bg-green-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700 shadow-sm'}`}>
-                                <DatabaseIcon /> {isSaving ? 'Saving...' : 'Save to Sheets'}
-                            </button>
-                            <button onClick={handleDownloadImage} disabled={isGeneratingImage} className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium transition ${isGeneratingImage ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'}`}>
-                                <ImageIcon /> {isGeneratingImage ? 'Generating...' : 'Save Image'}
-                            </button>
-                            <button onClick={handlePrint} className="flex items-center gap-2 bg-stone-700 text-white px-4 py-2 rounded-md font-medium hover:bg-stone-800 transition shadow-sm">
-                                <PrinterIcon /> Print / PDF
-                            </button>
+                            <button onClick={handleNewInvoice} className="flex items-center gap-2 px-4 py-2 bg-stone-100 text-stone-700 hover:bg-stone-200 rounded-md font-medium"><FilePlusIcon /> New Invoice</button>
+                            <button onClick={handleSaveToDrive} disabled={isSaving} className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium text-white ${isSaving ? 'bg-green-400' : 'bg-green-600 hover:bg-green-700'}`}><DatabaseIcon /> {isSaving ? 'Saving...' : 'Save to Sheets'}</button>
+                            <button onClick={handleDownloadImage} disabled={isGeneratingImage} className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium ${isGeneratingImage ? 'bg-gray-200 text-gray-500' : 'bg-white border border-gray-300 hover:bg-gray-50'}`}><ImageIcon /> {isGeneratingImage ? 'Generating...' : 'Save Image'}</button>
+                            <button onClick={handlePrint} className="flex items-center gap-2 bg-stone-700 text-white px-4 py-2 rounded-md font-medium hover:bg-stone-800"><PrinterIcon /> Print / PDF</button>
                             <div className="w-px h-8 bg-gray-300 mx-1"></div>
-                            <button onClick={handleLogout} className="flex items-center gap-2 bg-white text-gray-600 px-4 py-2 rounded-md font-medium hover:bg-red-50 hover:text-red-600 transition shadow-sm border border-gray-200">
-                                <LogOutIcon /> ចាកចេញ
-                            </button>
+                            <button onClick={handleLogout} className="flex items-center gap-2 bg-white text-gray-600 px-4 py-2 rounded-md font-medium hover:bg-red-50 hover:text-red-600 border border-gray-200"><LogOutIcon /> ចាកចេញ</button>
                         </div>
                     </div>
 
-                    {/* Invoice Container */}
                     <div className="print-container bg-white shadow-xl rounded-sm p-8 min-h-[29.7cm] flex flex-col relative mx-auto" style={{maxWidth: '100%'}}>
                         <div className="flex-grow">
-                            {/* Header Area */}
                             <h2 className="text-4xl font-extrabold text-stone-800 mb-3 tracking-tight">INVOICE</h2>
                             <div className="flex justify-between items-start mb-8 border-b-2 border-stone-200 pb-6">
-
                                 <div className="w-[50%] pr-4">
-                                    <div className="text-2xl font-extrabold text-stone-800 mb-1 tracking-tight">{invoiceData.sellerName}</div>
-                                    <div className="px-1 font-bold text-xl border-none mb-1 text-gray-600 ">{invoiceData.sellerAddress}</div>
-                                    <div className="px-1 font-bold text-xl border-none mb-1 text-gray-600 ">Tel:{invoiceData.sellerPhone}</div>
+                                    <div className="text-2xl font-extrabold text-stone-800 mb-1">{invoiceData.sellerName}</div>
+                                    <div className="px-1 font-bold text-xl text-gray-600 mb-1">{invoiceData.sellerAddress}</div>
+                                    <div className="px-1 font-bold text-xl text-gray-600 mb-1">Tel:{invoiceData.sellerPhone}</div>
                                 </div>
-
                                 <div className="w-[50%] text-right flex flex-col items-end">
                                     <div className="bg-stone-50 p-5 rounded-lg w-full border border-stone-100">
                                         <div className="flex justify-between items-center mb-2">
-                                            <span className="text-gray-500 font-bold text-xl font-semibold uppercase tracking-wider">Invoice No</span>
-                                            <input type="text" value={invoiceData.invoiceNumber} readOnly className="text-right font-bold text-gray-900 bg-transparent border-none focus:ring-0 p-0 w-64 cursor-default select-none" />
+                                            <span className="text-gray-500 font-bold text-xl uppercase">Invoice No</span>
+                                            <input type="text" value={invoiceData.invoiceNumber} readOnly className="text-right font-bold text-gray-900 bg-transparent border-none focus:ring-0 p-0 w-64" />
                                         </div>
                                         <div className="flex justify-between items-center mb-2">
-                                            <span className="text-gray-500 font-bold text-xl font-semibold uppercase tracking-wider">Date</span>
+                                            <span className="text-gray-500 font-bold text-xl uppercase">Date</span>
                                             <div className="date-input-container">
-                                                <input type="text" value={invoiceData.date} onChange={(e) => setInvoiceData({...invoiceData, date: e.target.value})} className="text-right font-bold text-gray-900 bg-transparent border-none focus:ring-0 p-0 w-64 cursor-default select-none" placeholder="dd-mm-yyyy" />
+                                                <input type="text" value={invoiceData.date} onChange={(e) => setInvoiceData({...invoiceData, date: e.target.value})} className="text-right font-bold text-gray-900 bg-transparent border-none p-0 w-64" />
                                                 <span data-html2canvas-ignore="true"><CalendarIcon /><input type="date" className="hidden-date-picker" onChange={(e) => handleDatePick('date', e.target.value)} /></span>
                                             </div>
                                         </div>
                                         <div className="flex justify-between items-center">
-                                            <span className="text-gray-500 font-bold text-xl font-semibold uppercase tracking-wider mr-1">Validity</span>
+                                            <span className="text-gray-500 font-bold text-xl uppercase mr-1">Validity</span>
                                             <div className="flex items-center justify-end w-full">
                                                 <div className="date-input-container w-32">
-                                                    <input type="text" value={invoiceData.validityStart} onChange={(e) => setInvoiceData({...invoiceData, validityStart: e.target.value})} className="text-right font-bold text-gray-900 bg-transparent border-none focus:ring-0 p-0 w-64 cursor-default select-none" placeholder="dd-mm-yyyy" />
+                                                    <input type="text" value={invoiceData.validityStart} onChange={(e) => setInvoiceData({...invoiceData, validityStart: e.target.value})} className="text-right font-bold text-gray-900 bg-transparent border-none p-0 w-64" />
                                                     <span data-html2canvas-ignore="true"><CalendarIcon /><input type="date" className="hidden-date-picker" onChange={(e) => handleDatePick('validityStart', e.target.value)} /></span>
                                                 </div>
-                                                <span className="text-xs text-gray-400 mx-1 font-medium">&#8680;</span>
+                                                <span className="text-xs text-gray-400 mx-1">&#8680;</span>
                                                 <div className="date-input-container w-32">
-                                                    <input type="text" value={invoiceData.dueDate} onChange={(e) => setInvoiceData({...invoiceData, dueDate: e.target.value})} className="text-right font-bold text-gray-900 bg-transparent border-none focus:ring-0 p-0 w-64 cursor-default select-none" placeholder="dd-mm-yyyy" />
+                                                    <input type="text" value={invoiceData.dueDate} onChange={(e) => setInvoiceData({...invoiceData, dueDate: e.target.value})} className="text-right font-bold text-gray-900 bg-transparent border-none p-0 w-64" />
                                                     <span data-html2canvas-ignore="true"><CalendarIcon /><input type="date" className="hidden-date-picker" onChange={(e) => handleDatePick('dueDate', e.target.value)} /></span>
                                                 </div>
                                             </div>
@@ -574,55 +357,36 @@
                                 </div>
                             </div>
 
-                            {/* Student Info with Search & Dropdown */}
                             <div className="mb-8 flex">
                                 <div className="w-full bg-stone-50 rounded-lg border border-stone-200 p-5">
                                     <h3 className="text-stone-400 text-xs font-bold uppercase tracking-widest mb-2">Student Info</h3>
                                     <div className="flex flex-col">
-                                        
-                                        {/* ប្រអប់ Search ឈ្មោះសិស្ស */}
                                         <div className="relative mb-1">
-                                            <input 
-                                                type="text" 
-                                                value={searchTerm} 
-                                                onChange={(e) => {
-                                                    setSearchTerm(e.target.value);
-                                                    setShowDropdown(true);
-                                                    setInvoiceData({...invoiceData, studentName: e.target.value});
-                                                }}
+                                            <input type="text" value={searchTerm} 
+                                                onChange={(e) => { setSearchTerm(e.target.value); setShowDropdown(true); setInvoiceData({...invoiceData, studentName: e.target.value}); }}
                                                 onFocus={() => setShowDropdown(true)}
-                                                className="w-full font-bold text-2xl bg-transparent border-b-2 border-transparent hover:border-stone-200 focus:border-stone-400 focus:ring-0 rounded-none p-3 text-gray-900 placeholder-gray-400 transition" 
-                                                placeholder="🔍 Search Student Name..." 
-                                                autoComplete="off"
-                                            />
-                                            
-                                            {/* បញ្ជីឈ្មោះសិស្សដែលស្វែងរកឃើញ */}
+                                                className="w-full font-bold text-2xl bg-transparent border-b-2 border-transparent hover:border-stone-200 focus:border-stone-400 focus:ring-0 p-3 text-gray-900 placeholder-gray-400" 
+                                                placeholder="🔍 Search Student Name..." autoComplete="off" />
                                             {showDropdown && studentsDb.length > 0 && (
                                                 <div className="absolute z-50 w-full mt-1 bg-white border border-stone-200 rounded-md shadow-lg max-h-60 overflow-auto no-print">
                                                     {studentsDb.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase())).map((student, idx) => (
-                                                        <div 
-                                                            key={idx} 
-                                                            onClick={() => handleSelectStudent(student)}
-                                                            className="p-3 hover:bg-stone-100 cursor-pointer border-b border-stone-100 last:border-0"
-                                                        >
+                                                        <div key={idx} onClick={() => handleSelectStudent(student)} className="p-3 hover:bg-stone-100 cursor-pointer border-b border-stone-100">
                                                             <div className="font-bold text-gray-800">{student.name} <span className="text-xs text-gray-400 font-normal">({student.studentId})</span></div>
                                                             <div className="text-xs text-gray-500">{student.location} | {student.subject}</div>
                                                         </div>
                                                     ))}
                                                     {studentsDb.filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase())).length === 0 && (
-                                                        <div className="p-3 text-gray-500 text-center text-sm">រកមិនឃើញសិស្សនេះទេ (អាចវាយបញ្ចូលថ្មីបាន)</div>
+                                                        <div className="p-3 text-gray-500 text-center text-sm">រកមិនឃើញសិស្សនេះទេ (វាយបញ្ចូលថ្មីបាន)</div>
                                                     )}
                                                 </div>
                                             )}
                                         </div>
-
-                                        <input name="studentAddress" value={invoiceData.studentAddress} onChange={handleInputChange} className="w-full font-bold text-2xl bg-transparent border-none focus:ring-0 rounded-none p-2 mb-1 text-gray-900 placeholder-gray-400" placeholder="Student Location" />
-                                        <input type="text" name="studentPhone" value={invoiceData.studentPhone} onChange={handleInputChange} className="w-full font-bold text-2xl bg-transparent border-none focus:ring-0 rounded-none p-2 mb-1 text-gray-900 placeholder-gray-400" placeholder="Phone Number" />
+                                        <input name="studentAddress" value={invoiceData.studentAddress} onChange={handleInputChange} className="w-full font-bold text-2xl bg-transparent border-none p-2 mb-1 placeholder-gray-400" placeholder="Student Location" />
+                                        <input type="text" name="studentPhone" value={invoiceData.studentPhone} onChange={handleInputChange} className="w-full font-bold text-2xl bg-transparent border-none p-2 mb-1 placeholder-gray-400" placeholder="Phone Number" />
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Table */}
                             <div className="mb-8">
                                 <div className="rounded-lg border border-stone-200 overflow-hidden">
                                     <table className="w-full border-collapse">
@@ -640,48 +404,40 @@
                                         <tbody className="divide-y divide-stone-200 border-b border-stone-200">
                                             {invoiceData.items.map((item, index) => (
                                                 <tr key={item.id} className={`hover:bg-stone-100 transition group ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
-                                                    <td className="p-2 pl-4 border-r border-stone-200"><input type="text" value={item.description} onChange={(e) => handleItemChange(item.id, 'description', e.target.value)} className="w-full font-bold text-2xl bg-transparent border-none focus:ring-0 rounded-none p-3 mb-1 text-gray-900 placeholder-gray-300" placeholder="Subject description" /></td>
-                                                    <td className="p-2 pl-4 border-r border-stone-200"><input type="text" value={item.startTime} onChange={(e) => handleItemChange(item.id, 'startTime', e.target.value)} className="w-full font-bold text-xl bg-transparent border-none focus:ring-2 focus:ring-stone-200 rounded p-1 font-medium text-gray-700 placeholder-gray-300" placeholder="In" /></td>
-                                                    <td className="p-2 pl-4 border-r border-stone-200"><input type="text" value={item.endTime} onChange={(e) => handleItemChange(item.id, 'endTime', e.target.value)} className="w-full font-bold text-xl bg-transparent border-none focus:ring-2 focus:ring-stone-200 rounded p-1 font-medium text-gray-700 placeholder-gray-300" placeholder="Out" /></td>
-                                                    <td className="p-2 border-r border-stone-200"><input type="number" value={item.quantity} onChange={(e) => handleItemChange(item.id, 'quantity', e.target.value)} className="w-full font-bold text-xl bg-transparent border-none focus:ring-2 focus:ring-stone-200 rounded p-1 font-medium text-gray-700 placeholder-gray-300" min="0" step="0.1" /></td>
-                                                    <td className="p-2 border-r border-stone-200"><input type="number" value={item.price} onChange={(e) => handleItemChange(item.id, 'price', e.target.value)} className="w-full font-bold text-xl text-right bg-transparent border-none focus:ring-2 focus:ring-stone-200 rounded p-1 font-medium text-gray-700" min="0" /></td>
+                                                    <td className="p-2 pl-4 border-r border-stone-200"><input type="text" value={item.description} onChange={(e) => handleItemChange(item.id, 'description', e.target.value)} className="w-full font-bold text-2xl bg-transparent border-none p-3 placeholder-gray-300" placeholder="Subject" /></td>
+                                                    <td className="p-2 pl-4 border-r border-stone-200"><input type="text" value={item.startTime} onChange={(e) => handleItemChange(item.id, 'startTime', e.target.value)} className="w-full font-bold text-xl bg-transparent border-none p-1 placeholder-gray-300" placeholder="In" /></td>
+                                                    <td className="p-2 pl-4 border-r border-stone-200"><input type="text" value={item.endTime} onChange={(e) => handleItemChange(item.id, 'endTime', e.target.value)} className="w-full font-bold text-xl bg-transparent border-none p-1 placeholder-gray-300" placeholder="Out" /></td>
+                                                    <td className="p-2 border-r border-stone-200"><input type="number" value={item.quantity} onChange={(e) => handleItemChange(item.id, 'quantity', e.target.value)} className="w-full font-bold text-xl bg-transparent border-none p-1 placeholder-gray-300" min="0" step="0.1" /></td>
+                                                    <td className="p-2 border-r border-stone-200"><input type="number" value={item.price} onChange={(e) => handleItemChange(item.id, 'price', e.target.value)} className="w-full font-bold text-xl text-right bg-transparent border-none p-1" min="0" /></td>
                                                     <td className="text-right font-bold text-xl text-gray-900">{invoiceData.currency} {(item.quantity * item.price).toFixed(2)}</td>
                                                     <td className="p-1 text-center no-print border-l border-stone-200" data-html2canvas-ignore="true">
-                                                        <button onClick={() => removeItem(item.id)} className="text-gray-300 hover:text-red-500 p-2 rounded-full transition opacity-0 group-hover:opacity-100" title="Remove"><Trash2Icon /></button>
+                                                        <button onClick={() => removeItem(item.id)} className="text-gray-300 hover:text-red-500 p-2 rounded-full opacity-0 group-hover:opacity-100"><Trash2Icon /></button>
                                                     </td>
                                                 </tr>
                                             ))}
                                         </tbody>
                                     </table>
                                 </div>
-                                <button onClick={addItem} className="mt-[5mm] no-print flex items-center gap-2 text-stone-600 font-semibold text-sm px-4 py-2 rounded-md hover:bg-stone-200 transition border border-dashed border-stone-300" data-html2canvas-ignore="true">
-                                    <PlusIcon /> Add Item
-                                </button>
+                                <button onClick={addItem} className="mt-[5mm] no-print flex items-center gap-2 text-stone-600 font-semibold text-sm px-4 py-2 rounded-md hover:bg-stone-200 border border-dashed border-stone-300" data-html2canvas-ignore="true"><PlusIcon /> Add Item</button>
                             </div>
 
-                            {/* Totals Section */}
                             <div className="flex justify-end mt-12">
                                 <div className="w-1/2 bg-stone-800 text-white p-8 rounded-lg shadow-xl relative overflow-hidden">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16"></div>
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
                                     <div className="flex justify-between text-white border-b border-stone-600 pb-3">
-                                        <span className="font-medium text-sm">Subtotal</span>
-                                        <span className="font-semibold text-white">{invoiceData.currency} {subtotal.toFixed(2)}</span>
+                                        <span className="font-medium text-sm">Subtotal</span><span className="font-semibold text-white">{invoiceData.currency} {subtotal.toFixed(2)}</span>
                                     </div>
                                     <div className="flex justify-between items-center text-stone-300 border-b border-stone-600 pb-3">
                                         <div className="flex items-center gap-3">
                                             <span className="font-medium text-sm text-white">Discount</span>
-                                            <div className="flex items-center text-white no-print border-stone-600 rounded p px-2 py-0.5 shadow-sm">
-                                                <input type="number" name="discountRate" value={invoiceData.discountRate} onChange={handleInputChange} className="w-full bg-transparent border-none focus:ring-2 focus:ring-stone-500 rounded p-1 font-medium text-red-400 placeholder-stone-500" min="0" max="100" />
-                                                <span className="text-xs text-white">%</span>
-                                            </div>
+                                            <div className="flex items-center text-white no-print border-stone-600 rounded px-2 shadow-sm"><input type="number" name="discountRate" value={invoiceData.discountRate} onChange={handleInputChange} className="w-full bg-transparent border-none p-1 font-medium text-red-400" min="0" max="100" /><span className="text-xs text-white">%</span></div>
                                             <span className="print-only hidden text-sm font-medium text-white">({invoiceData.discountRate}%)</span>
                                         </div>
                                         <span className="font-semibold text-red-400">-{invoiceData.currency} {discountAmount.toFixed(2)}</span>
                                     </div>
                                     <div className="flex justify-between text-5xl font-bold text-white pt-1">
-                                        <span>Total</span>
-                                        <span>{invoiceData.currency} {grandTotal.toFixed(2)}</span>
+                                        <span>Total</span><span>{invoiceData.currency} {grandTotal.toFixed(2)}</span>
                                     </div>
                                 </div>
                             </div>
@@ -690,16 +446,12 @@
                         <div className="mt-12 break-avoid">
                             <div className="grid grid-cols-2 gap-8">
                                 <div>
-                                    <h4 className="font-bold text-gray-700 text-xs uppercase tracking-wider mb-2">Thank You For choosing</h4>
-                                    <div contentEditable suppressContentEditableWarning onBlur={(e) => setInvoiceData({ ...invoiceData, note: e.currentTarget.innerText })} className="editable-div w-full min-h-[140px] bg-stone-100 border border-stone-300 rounded-lg p-4 text-sm text-gray-700 focus:ring-1 focus:ring-stone-400 whitespace-pre-wrap font-bold cursor-text">
-                                        {invoiceData.note}
-                                    </div>
+                                    <h4 className="font-bold text-gray-700 text-xs uppercase mb-2">Thank You For choosing</h4>
+                                    <div contentEditable suppressContentEditableWarning onBlur={(e) => setInvoiceData({ ...invoiceData, note: e.currentTarget.innerText })} className="editable-div w-full min-h-[140px] bg-stone-100 border border-stone-300 rounded-lg p-4 text-sm font-bold">{invoiceData.note}</div>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-gray-700 text-xs uppercase tracking-wider mb-2">Bank Transfer Info</h4>
-                                    <div contentEditable suppressContentEditableWarning onBlur={(e) => setInvoiceData({ ...invoiceData, paymentInfo: e.currentTarget.innerText })} className="editable-div w-full min-h-[140px] bg-stone-100 border border-stone-300 rounded-lg p-4 text-sm text-gray-700 focus:ring-1 focus:ring-stone-400 whitespace-pre-wrap cursor-text font-bold font-mono">
-                                        {invoiceData.paymentInfo}
-                                    </div>
+                                    <h4 className="font-bold text-gray-700 text-xs uppercase mb-2">Bank Transfer Info</h4>
+                                    <div contentEditable suppressContentEditableWarning onBlur={(e) => setInvoiceData({ ...invoiceData, paymentInfo: e.currentTarget.innerText })} className="editable-div w-full min-h-[140px] bg-stone-100 border border-stone-300 rounded-lg p-4 text-sm font-bold font-mono">{invoiceData.paymentInfo}</div>
                                 </div>
                             </div>
                         </div>
@@ -711,8 +463,6 @@
 
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<InvoiceGenerator />);
-    
 </script>
-    
 </body>
 </html>
